@@ -79,30 +79,26 @@ img {
 <div id="app"></div>
 
 <script>
-const petsData = [
-  {
-    name: "Purrsloud",
-    species: "Cat",
-    favFoods: ["wet food", "dry food", "<strong>any</strong> food"],
-    birthYear: 2016,
-    photo: "https://learnwebcode.github.io/json-example/images/cat-2.jpg"
-  },
-  {
-    name: "Barksalot",
-    species: "Dog",
-    birthYear: 2008,
-    photo: "https://learnwebcode.github.io/json-example/images/dog-1.jpg"
-  },
-  {
-    name: "Meowsalot",
-    species: "Cat",
-    favFoods: ["tuna", "catnip", "celery"],
-    birthYear: 2012,
-    photo: "https://learnwebcode.github.io/json-example/images/cat-1.jpg"
-  }
-];
+    const api_urlregion = "https://api.covid19map.nz/regions.json";
+    const lg=console.log;
 
-function age(birthYear) {
+async function getApi4() {
+    const response = await fetch(api_urlregion);
+    const region = await response.json();
+    var name1=[];
+    var pop1 = [];
+
+    /*  iterate through data and push into empty arrays 
+        NOTE- this only iterates through the first 20 items in the file (0 to 19) 
+        there is more info in the JSON file that I don't want, to do with Clusters*/
+    for (var i = 0; i < 20; i++) {
+        // DHB region name & population of DHB 
+        name1.push(region[i].name);
+        pop1.push(region[i].population);
+
+    }
+
+/* function age(birthYear) {
   let calculatedAge = new Date().getFullYear() - birthYear;
   if (calculatedAge == 1) {
     return "1 year old";
@@ -131,13 +127,12 @@ function petTemplate(pet) {
     ${pet.favFoods ? foods(pet.favFoods) : ""}
     </div>
   `;
-}
+} */
 
 document.getElementById("app").innerHTML = `
-  <h1 class="app-title">Pets (${petsData.length} results)</h1>
-  ${petsData.map(petTemplate).join("")}
-  <p class="footer">These ${petsData.length} pets were added recently. Check back soon for updates.</p>
-  <p>${petsData[0].name}</p>
+  <h1 class="app-title">Pets (${name1.length} results)</h1>
+  ${name1.map(petTemplate).join("")}
+  <p class="footer">These ${name1.length} pets were added recently. Check back soon for updates.</p>
 `;
 
 </script>

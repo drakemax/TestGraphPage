@@ -53,8 +53,8 @@ svg:not(:root) {
 
 #data {
     width: 100%;
-    float: left;
-    height: 650px;
+    float: right;
+    height: 900px;
 }
 
 #clear {
@@ -75,27 +75,13 @@ text {
         const lg = console.log;
 
       // START FUNCTION
-        //THIS IS MAIN FUNCTION THAT HOLDS EVERYTHING
         async function getApis() {
     
             /*  API info api_urlsum- summary.json, 
         This givses summary data of time series as they all add up
         api_urlhist - history.json 
-        This gives Regions, by DHB name and dates and current and new
-        
-        https://covidapi.info/api/v1/global/2020-04-23
-        
+        This gives Regions, by DHB name and dates and current and new 
         */
-
-        const globa="https://covidapi.info/api/v1/global/";
-        var d = new Date();
-        d.setDate(d.getDate() - 2);
-        var n= d.toISOString().substring(0,10);
-/* lg(n);
-
-lg(api_glob); */
-
-        var api_glob = globa + n;
         const api_url =" https://covidapi.info/api/v1/country/NZL/timeseries/2020-03-10/2020-5-28"
         const api_urlsum = "https://api.covid19map.nz/summary.json";
         const api_urlhist = "https://api.covid19map.nz/history.json";
@@ -195,26 +181,14 @@ lg(api_glob); */
     // this is for world figures- 
     const now = new Date();
 
-     
+       //THIS IS MAIN FUNCTION THAT HOLDS EVERYTHING
       
-                        //This is GLOBAL DATA
-        const responseG = await fetch(api_glob);
-        const sum = await responseG.json();
-        
-        const gDat=sum.date;
-        const gTot=sum.result.confirmed;
-        const gRec=sum.result.recovered;
-        const gDed=sum.result.deaths;
-        const gAct=gTot-gRec-gDed;
-
-
-
 
             //This is SUMMARY DATA
         const response = await fetch(api_urlsum);
         const data = await response.json();
 
-        
+
            //This is SUMMARY ITERATION
                 for (var i = 0; i < data.length; i++) {
                 // var data1 = data;var formatedDate = date.format("isoDate");
@@ -233,8 +207,10 @@ lg(api_glob); */
                 deadTot.push(data[i].deathsTotal);
                 hospTot.push(data[i].hospitalTotal);
             }
-            const lenx=combTot.length-1;
-            
+
+            //document.getElementById('date').textContent=dates[dates.length-1];
+            //console.log(dates[dates.length-1]);
+
         var datesGf = []; //dates for labels in 2020-03-25 format
         var combTotGf = []; //combinedTotal
         var recTotGf = []; //recoveredTotal
@@ -258,8 +234,31 @@ lg(api_glob); */
                 hospGf.push((hosp[i+1]+hosp[i+2]+hosp[i+3]+hosp[i+4]+hosp[i+5])/(hosp[i]+hosp[i+1]+hosp[i+2]+hosp[i+3]+hosp[i+4]));
 
             }            
+/*/THIS MAKES TABLE
+var lastItem = combTot.length-1;
+            function drawTable() {
+var data = new google.visualization.DataTable();
+data.addColumn('string', 'Information');
+data.addColumn('number', 'Total to Date');
+data.addColumn('number', 'New in last day');
+data.addRows([
+['Number of confirmed cases in New Zealand', {v:1445},{v:5}],// {v:combTot[lastItem]},{v:conf[lastItem]}],
+['Number of probable cases',  {v:338},{v:3}],
+['Number of confirmed and probable cases',  {v:1445},{v:5}],
+['Number of cases currently in hospital',  {v:12},{v:-2}],
+['Number of recovered cases',{v:1445},{v:5}], //{v:recTot[lastItem]},{v:rec[lastItem]}],
+['Number of deaths', {v:1445},{v:5}],// {v:deadTot[lastItem]},{v:dead[lastItem]}],
+]);
 
+var table = new google.visualization.Table(document.getElementById('data_table'));
+var formatter = new google.visualization.ArrowFormat();
+formatter.format(data, 2); // Apply formatter to second column
 
+table.draw(data, {showRowNumber: false, alternatingRowStyle:true, width: '100%', height: '50%'});
+}
+lg(lastItem);
+lg(recTot[lastItem]);
+*/
 
  //GET HISTORY API
 
@@ -345,7 +344,7 @@ lg(api_glob); */
         whanN.push(history["Whanganui"][i].new);
 
     }
-  
+    lg(auckN);
     const auckGf = []; //Auckland
         const bopGf = []; //Bay of Plenty
         const cantGf = []; //Canterbury
@@ -370,12 +369,12 @@ lg(api_glob); */
     
 
 
-    /* //5 day average 
+    //5 day average 
     for (var i = 0; i < history["Auckland"].length-5; i++) {
    
    auckGf.push((auckN[i+1]+auckN[i+2]+auckN[i+3]+auckN[i+4]+auckN[i+5])/(auckN[i]+auckN[i+1]+auckN[i+2]+auckN[i+3]+auckN[i+4]));
  
-} */
+}
 
 
 
@@ -408,7 +407,7 @@ lg(api_glob); */
     const lastInArray =history[Object.keys(history)[0]].length;
   
 
-  
+     lg(whanT[whanT.length-1]);
 //loop to get array of all the current date values, thisarray to find maxvalue
     for (var i = 0; i < 20; i++) { // Hardcoded DHB numbers (19 in total so has to be <20)
 
@@ -443,7 +442,7 @@ var namePop=[];
         //<title>Auckland - DHB @Pop = ${namePop[namePop.findIndex(K=> K=="Canterbury")+1]} -  Confirmed  = Number of cases -new today=Change in last 24 hours -hospitalised =3</title> 
          */
 
-      
+
          
 
 
@@ -451,12 +450,8 @@ document.getElementById("DHBmap").innerHTML = `
 <div id="container1">
         <div  id="header">
             <h1> Covid in NZ. API & Template Literal Page</h1>
-    <h3>Todays Date: ${dates[dates.length-1]}</h3>
-    <p>  <strong> NZ Data: <br>
-        Confirmed cases= ${combTot[lenx]}, Active cases= ${combTot[lenx]-recTot[lenx]-deadTot[lenx]}, Recoveries= ${recTot[lenx]}, Deaths= ${deadTot[lenx]} </strong><br>
-        <strong> Global data: from  ${gDat}, 2 days ago, <br>
-     Confirmed cases= ${gTot}, Active cases= ${gAct}, Recoveries= ${gRec}, Deaths= ${gDed} </strong>
-     </p>
+    <p> Date: ${dates[dates.length-1]}<br>
+     Global Confirmed cases= ${dates[dates.length-1]}</p>
         <p id="demo"></p>
 <canvas id="myChart" width="100" height="80"></canvas>
 </div>
@@ -680,80 +675,31 @@ var chart = new Chart(ctx, {
     }
  	
 });	
-        
+    
+            
 
 
-/* THIS IS SCRIPT FOR GOOGLE TABLE */
-
-google.charts.load('current', {'packages':['table']});
-google.charts.setOnLoadCallback(drawTable);
-
-function drawTable() {
-var data = new google.visualization.DataTable();
-data.addColumn('string', 'Information');
-data.addColumn('number', 'Total to Date');
-data.addColumn('number', 'New in last day');
-data.addRows([
-['Number of confirmed cases in NZ',  {v:combTot[lenx]},{v:conf[lenx]}],
-['Number of Active cases',  {v:combTot[lenx]-recTot[lenx]-deadTot[lenx]},{v:conf[lenx]-rec[lenx]-dead[lenx]}],
-['Number of cases currently in hospital',  {v:hospTot[lenx]},{v:hosp[lenx]}],
-['Number of recovered cases',  {v:recTot[lenx]},{v:rec[lenx]}],
-['Number of deaths ',  {v:deadTot[lenx]},{v:dead[lenx]}]
-]);
 
 
-/* <h1> Covid in NZ. API & Template Literal Page</h1>
-    <h3>Todays Date: ${dates[dates.length-1]}</h3>
-    <p>  <strong> NZ Data: <br>
-        Confirmed cases= ${combTot[lenx]}, Active cases= ${combTot[lenx]-recTot[lenx]-deadTot[lenx]}, Recoveries= ${recTot[lenx]}, Deaths= ${deadTot[lenx]} </strong><br>
-        <strong> Global data: from  ${gDat}, 2 days ago, <br>
-     Confirmed cases= ${gTot}, Active cases= ${gAct}, Recoveries= ${gRec}, Deaths= ${gDed} </strong>
-     </p>
-        <p id="demo"></p> */
 
-var table = new google.visualization.Table(document.getElementById('data_table'));
-var formatter = new google.visualization.ArrowFormat();
-formatter.format(data, 2); // Apply formatter to second column
+       
 
-table.draw(data, {showRowNumber: false, alternatingRowStyle:true, width: '100%', height: '50%'});
-}  
         };
 
-//RUN THE FUNCTION
         getApis();
     </script>
-   <!--  THIS IS WIDGET FOR AIR QUALITY -->
-<script  type="text/javascript"  charset="utf-8">  
-    (function(w,d,t,f){  w[f]=w[f]||function(c,k,n){s=w[f],k=s['k']=(s['k']||(k?('&k='+k):''));s['c']=  
-    c=(c  instanceof  Array)?c:[c];s['n']=n=n||0;L=d.createElement(t),e=d.getElementsByTagName(t)[0];  
-    L.async=1;L.src='//feed.aqicn.org/feed/'+(c[n].city)+'/'+(c[n].lang||'')+'/feed.v1.js?n='+n+k;  
-    e.parentNode.insertBefore(L,e);  };  })(  window,document,'script','_aqiFeed'  ); 
-    _aqiFeed({  
-  container:"city-aqi-container", 
-  display: "%details", 
-  city:"wellington",  
-  lang:"en"  
-});   
-</script>
-
  <div id="container2">
-    <div id="data" >
-        <div id="data_table" align="left">
-        </div>
-<br><br>
-        
-<!-- THIS IS WIDGET FOR AIR QUALITY -->
-<span  id="city-aqi-container"></span>
+    <div id="data" align="right">
+        <iframe title="NZ Current Covid Status" aria-label="Table" id="datawrapper-chart-oK5jP" src="//datawrapper.dwcdn.net/oK5jP/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="568"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+        </script>  
+        <p>This is latest status from MoH table which is updated daily at 1pm. 
 
+
+
+        </p>     
         </div>
     </div>
-  
-  
 
-
-
-
-   
 
 
 

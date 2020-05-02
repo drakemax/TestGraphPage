@@ -1,5 +1,5 @@
 // This gets time series of summary total NZ data for charts/tables
-async function getApi1() {
+async function getApi() {
     const response = await fetch(api_urlsum);
     const data = await response.json();
 
@@ -22,7 +22,8 @@ async function getApi1() {
         deadTot.push(data[i].deathsTotal);
         hospTot.push(data[i].hospitalTotal);
     }
-    //console.log(dates);
+    document.getElementById('date').textContent=dates[dates.length-1];
+    //console.log(dates[dates.length-1]);
 };
 
 // This calls the api_urlhist which is history.json file & creates date, new and total figures by region 
@@ -141,18 +142,18 @@ async function getApi4() {
 async function getMaxRegionNum() {
     const response = await fetch(api_urlhist);
     const history = await response.json();
-    //this finds the last item in the list, as the api is being updated the list grows.
-    const lastInArray = history[Object.keys(history)[19]].length;
-    console.log(history[Object.keys(history)[19]][17].total); // this works to get lastDHB by item, can iterate through to get largest item
+//this finds the last item in the list, as the api is being updated the list grows.
+    const lastInArray =history[Object.keys(history)[19]].length;
+    console.log(history[Object.keys(history)[19]].length); // this works to get lastDHB by item, can iterate through to get largest item
 
-    console.log(history[Object.keys(history)[0]][lastInArray - 1].total); // this works to get last TOTAL in array of city
-
-    //loop to get array of all the current date values, thisarray to find maxvalue
+     console.log(history[Object.keys(history)[0]][lastInArray-1].total); // this works to get last TOTAL in array of city
+  const mxArray=[];
+//loop to get array of all the current date values, thisarray to find maxvalue
     for (var i = 0; i < 20; i++) { // Hardcoded DHB numbers (19 in total so has to be <20)
 
-        maxArray.push(history[Object.keys(history)[i]][lastInArray - 1].total);
-    }
-    arr1 = [1, 4, 6, 9];
-    console.log(maxArray);
-    //return maxArray;
-};
+        mxArray.push(history[Object.keys(history)[i]][lastInArray-1].total);
+    } 
+    maxTot=Math.max(...maxArray);
+    lg(maxTot);
+     return mxArray; 
+}

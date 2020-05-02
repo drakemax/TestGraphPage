@@ -25,10 +25,10 @@
     <p>End Date</p>
     <select id="endDate"  name= "end" onchange = "selectEnd(this.id)">
       <option value=""></option>
-      <option value="2020-04-10">2020-04-10</option>
-       <option value="2020-04-11">2020-04-11</option>
-       <option value="2020-04-12">2020-04-12</option>
-       <option value="2020-04-13">2020-04-13</option>
+      <option value="2020-04-1910">2020-04-19</option>
+       <option value="2020-04-20">2020-04-20</option>
+       <option value="2020-04-21">2020-04-21</option>
+       <option value="2020-04-22">2020-04-22</option>
       </select>
 
     <p>Country</p>
@@ -225,14 +225,14 @@
                 // The data for our dataset
         data: {
           
-            labels:  dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July'],//data1[i].date,//
+            labels:  dates,
             
         datasets: [{
                 label: 'Confirmed Cases ',
                 fill: false, 
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: conf   //[0, 10, 5, 2, 20, 30, 45]// document.getElementById("demo").innerHTML = car
+                data: conf   
             },
             {
              label: 'Recovery Cases' ,
@@ -241,6 +241,7 @@
                 borderColor: 'rgb(255, 99, 132)',
                 data: rec
                 },
+              
                 {
              label: 'Death Cases ',
                 fill: false, 

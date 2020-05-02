@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+   
+ <!--  
+    <link rel="stylesheet" type="text/css" href="/css/Api_call_style.css" media="screen" />
+   This is calling the chart  
+
+It didn't seem to waNT TO GO AND GET THE STYLE SHEET- ONCE STYLES IN MAIN DOC IT WORKED!!!!!
+
+-->
+</head>
+<body>
+
+
+    <script type="text/javascript">
+        async function getApis() {
+        const lg = console.log;
+        
+        const api_urlsum = "https://coviddata.github.io/coviddata/v1/places/stats.json";
+       // const api_urlhist = "https://api.covid19map.nz/history.json";
+       // const api_urlregion = "https://api.covid19map.nz/regions.json";
+
+       var places =[];
+
+            //This is SUMMARY DATA
+            const response = await fetch(api_urlsum);
+        const data = await response.json();
+
+lg(data[0].place.name);
+           //This is SUMMARY ITERATION
+                for (var i = 0; i < data.length; i++) {
+                // var data1 = data;var formatedDate = date.format("isoDate");
+               places.push(data[i].place.name); //Date
+                }
+                lg(places);        
+
+}
+getApis() ;
+        </script>
+
+
+
+
+    </body>

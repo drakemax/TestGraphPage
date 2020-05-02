@@ -7,26 +7,33 @@ svg {
 svg:not(:root) {
     display: inline-block;
 }
+#container1 {
+    width: 66%;
+    margin: auto;
+    float: left;
+}
+#container2{
+    width: 33%;
+    margin: auto;
+    float: right;
+}
 
 #header {
-    width: 35%;
+    width: 50%;
     float: left;
     height: 900px;
 }
 
-#container {
-    width: 100%;
-    margin: auto;
-}
+
 
 #map {
-    width: 35%;
+    width: 50%;
     float: left;
     height: 900px;
 }
 
 #data {
-    width: 30%;
+    width: 100%;
     float: right;
     height: 900px;
 }
