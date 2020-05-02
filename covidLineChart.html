@@ -1,0 +1,228 @@
+<!-- i want to 
+1. have 3 charts, (maybe 2 to begin with) confirmed, deaths, recovered as seperate lines on chart. 
+This may change to Bar charts later.
+2. Build a script/concatenation for the URL for the API based on todays date  and also able to select a country. 
+3. Later maybe a list to choose from for country to look at the data
+
+ -->
+ 
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>  Chart from API </title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<style>
+html,body,svg { height:100% }
+svg:not(:root) { display: inline-block; }
+#header {
+width: 35%;
+float:left;
+height: 900px;
+}
+#container {
+width: 100%;
+margin: auto;
+}
+#chart {
+width: 50%;
+float:left;
+height: 900px;
+}
+ #data {
+width: 30%;
+float: right;
+height: 900px;
+}
+#clear {
+clear: both;
+}
+text {
+font: bold 13px Arial;
+  }
+</style>
+</head>
+<body>
+
+<h1> Covid Daily Changes NZ </h1>
+<p> To return to the general Covid NZ page click button below: </p>
+<p class="alignleft"> <button onclick="myFunction()">Click to go to General Covid NZ page by Max Drake </button> </p>
+<style>
+.aligncenter {
+    text-align: center;
+}
+</style>
+<script>function myFunction() {
+  location.replace("https://pir2.tk/web/data/covid/covidmap.html")  
+}
+</script>
+
+<div id="container">
+<div id="header">
+<p id="demo"></p>
+<canvas id="myChart" width="100" height="50"></canvas>
+</div>
+</div>
+
+<script type="text/javascript">
+	var dates = [];
+	var conf = [];
+	var dead = []; 
+	var rec = []; 
+	var datesLessStart  = [];
+	var confLessEnd  = [];
+	var confLessStart = [];
+	var recLessEnd = [];
+	var recLessStart = [];
+	var deadLessEnd = [];
+	var deadLessStart = [];
+/* <!--API info  https://github.com/backtrackbaba/covid-api --> */
+const api_url =" https://covidapi.info/api/v1/country/NZL/timeseries/2020-03-10/2020-4-20"
+//const api_url =" https://covidapi.info/api/v1/country/NZL"
+//const api_url ="https://api.wheretheiss.at/v1/satellites/25544"
+//const api_url =" https://picsum.photos/list"    /api/v1/country/IND/timeseries/2020-03-10/2020-03-19
+
+async function getApi(){
+const response = await fetch(api_url);
+const data = await response.json();
+//console.log(data.count);
+//console.log(data);
+
+for (var i = 0; i < data.count; i++) {
+    var data1 = data.result;
+   // console.log(data1[i].date);
+	//console.log(data1[i].confirmed);
+	//console.log(data1[i].deaths);
+	//console.log(data1[i].recovered);
+	dates.push(data1[i].date); 
+	conf.push(data1[i].confirmed);
+	rec.push(data1[i].recovered);
+	dead.push(data1[i].deaths);
+ }
+ <!-- Create Array for dates with first date not in Array- This is to match the number of datapoints created -->
+ //console.log(dates);
+ datesLessStart =dates.slice(0);
+	// console.log(datesLessStart);
+	datesLessStart.shift();
+	// console.log(datesLessStart//30
+	
+<!-- Create Array for confirmed daily addition/reductions get by subtracting today from yesterdays number -->
+     //console.log(conf);
+	confLessEnd =conf.slice(0);
+      confLessEnd.pop();	
+ 	 //console.log(confLessEnd); //30
+     
+	confLessStart = conf.slice(0);
+		confLessStart.shift();
+		//console.log(confLessStart);//30
+	
+	var dailyConfChange = confLessStart.map(function(item, index) {
+	  // In this case item correspond to currentValue of array a, 
+	  // using index to get value from array b
+	  return item - confLessEnd[index];
+	})	
+	//console.log(dailyConfChange);//30
+	
+<!-- Create Array for recovered daily addition/reductions get by subtracting today from yesterdays number 	
+       recLessEnd =rec.slice(0);
+	    recLessEnd.pop();
+		//console.log(recLessEnd);//30
+		
+		recLessStart =rec.slice(0);
+		recLessStart.shift();
+		//console.log(recLessStart);//30
+		
+	var dailyRecChange = recLessStart.map(function(item, index) {
+	  // In this case item correspond to currentValue of array a, 
+	  // using index to get value from array b
+	  return item - recLessEnd[index];
+	})	
+	//console.log(dailyRecChange);//30
+ 
+ <!-- Create Array for deaths daily addition/reductions get by subtracting today from yesterdays number 	
+       deadLessEnd =dead.slice(0);
+	    deadLessEnd.pop();
+		//console.log(deadLessEnd);//30
+		
+		deadLessStart =dead.slice(0);
+		deadLessStart.shift();
+		//console.log(deadLessStart);//30
+		
+	var dailyDeadChange = deadLessStart.map(function(item, index) {
+	  // In this case item correspond to currentValue of array a, 
+	  // using index to get value from array b
+	  return item - deadLessEnd[index];
+	})	
+	//console.log(dailyRecChange);//30
+ 
+ // console.log(Object.entries(data.date).map( (item) => item[0]));
+//console.log(document.getElementById("demo").innerHTML = death);
+<!-- chart -->
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+	  
+    // The data for our dataset
+    data: {
+        labels: document.getElementById("demo").innerHTML = datesLessStart,//['January', 'February', 'March', 'April', 'May', 'June', 'July'],//data1[i].date,//
+    
+    datasets: [{
+            label: 'Confirmed Cases Daily Change',
+			fill: false, 
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: document.getElementById("demo").innerHTML = dailyConfChange    //[0, 10, 5, 2, 20, 30, 45]// document.getElementById("demo").innerHTML = car
+        },
+		{
+		 label: 'Recovery Cases Daily Change',
+			fill: false, 
+            backgroundColor: 'rgb(0, 191, 106)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: document.getElementById("demo").innerHTML = dailyRecChange
+			},
+			{
+		 label: 'Death Cases Daily Change',
+			fill: false, 
+            backgroundColor: 'rgb(99, 99, 132)',
+			data: document.getElementById("demo").innerHTML = dailyDeadChange,
+            borderColor: 'rgb(255, 99, 132)'
+            
+			}
+		]
+    },
+
+    // Configuration options go here
+    options: {}
+	
+});	
+}
+getApi();
+</script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

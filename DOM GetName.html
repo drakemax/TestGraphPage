@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>JavaScript Document Object Methods</title>
+	<script type="text/javascript">
+		function getElement()
+		{
+			new_window = window.open("")
+			new_window.document.open()
+			var xyz = document.getElementsByName("ab") +document.getElementsByName("abc")
+        
+			new_window.document.write("Length of Your Name is " + xyz.length)
+			new_window.document.close()
+		}
+	</script>
+</head>
+<body>
+
+<h3>JavaScript Document Object Methods Example</h3>
+First Name:<input type="text" name="ab" size="20"><br/>
+Middle Name:<input type="text" name="ab" size="20"><br/>
+Last Name:<input type="text" name="ab" size="20"><br/>
+<input type="button" onclick="getElement()" value="Calculate Length">
+
+</body>
+</html>

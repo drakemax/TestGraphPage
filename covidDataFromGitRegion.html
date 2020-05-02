@@ -1,0 +1,178 @@
+<!-- 
+    I want to do some work on the URL call so that I can select bitys of it 
+    then call the graphs up based on the call. 
+ -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+     </head>
+        <body>
+<h1>Covid Graphs from Github API for Region Populations w/ slice()</h1>
+
+    <script type="text/javascript">
+    /*[
+  {
+    "name": "Canterbury",
+    "population": 567870,
+    "boundary": [
+      [
+        [-43.465251, 170.598179],
+        [-43.419131, 170.615128],
+        [-43.387501, 170.655818],
+        [-43.365644, 170.650442], */
+
+        var name1 = [];//name
+        var pop1 = [];//population
+       /*  var recTot = [];  //recoveredTotal
+        var deadTot = [];  //deathsTotal
+        var hospTot = [];  //hospitalTotal
+
+
+    
+        var conf = [];//daily combined
+        var dead = []; //daily deaths
+        var rec = [];  //daily recovered
+        var hosp = [];  //daily hospital
+ */
+
+
+   
+     
+ 
+   /*  <!--API info  "https://raw.githubusercontent.com/dixoncheng/covid19map/master/data/summary.json" --> */
+ /*  <!--API info  "https://raw.githubusercontent.com/dixoncheng/covid19map/master/data/regions.json" --> */
+   
+   var api_url = "https://raw.githubusercontent.com/dixoncheng/covid19map/master/data/regions.json";
+    console.log(api_url);
+
+
+    async function getApi(){
+    const response = await fetch(api_url);
+    const data = await response.json();
+ 
+/*  iterate through data and push into empty arrays */
+    for (var i = 0; i < data.length; i++) {
+       // var data1 = data;
+       //Date
+        name1.push(data[i].name); 
+        //Daily
+        pop1.push(data[i].population);
+        /* rec.push(data[i].recovered);
+        dead.push(data[i].deaths);
+        hosp.push(data[i].hospital); 
+
+
+        combTot.push(data[i].combinedTotal);
+        recTot.push(data[i].recoveredTotal);
+        deadTot.push(data[i].deathsTotal);
+        hospTot.push(data[i].hospitalTotal); */
+     }
+     console.log(name1);
+     console.log(pop1);
+     var name2=name1.slice(0,19);
+console.log(name2);
+var pop2=pop1.slice(0,19);
+    
+/*     <!-- chart1 Daily change --> */
+    var ctx = document.getElementById('Daily').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+                // The data for our dataset
+        data: {
+          
+            labels:  name2 ,//datesLessStart,//['January', 'February', 'March', 'April', 'May', 'June', 'July'],//data1[i].date,//
+            
+        datasets: [{
+                label: 'CDHB population',
+                fill: false, 
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: pop2//dailyConfChange    //[0, 10, 5, 2, 20, 30, 45]// document.getElementById("demo").innerHTML = car
+            }
+            /* {
+             label: 'Recovery Cases Daily Change',
+                fill: false, 
+                backgroundColor: 'rgb(0, 191, 106)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: rec//dailyRecChange
+                },
+                {
+             label: 'Death Cases Daily Change',
+                fill: false, 
+                backgroundColor: 'rgb(0, 191, 106)',
+                borderColor: 'rgb(99, 99, 132)',
+                data: dead//dailyRecChange
+                },
+                {
+             label: 'Hospital Cases Daily Change',
+                fill: false, 
+                backgroundColor: 'rgb(99, 99, 132)',
+                borderColor: 'rgb(0, 191, 106)',
+                data: hospTot
+                } */
+            ]
+        },
+    
+        // Configuration options go here
+        options: {}
+        
+    });	
+
+    /*     <!-- chart2 cumulative --> 
+    var ctx = document.getElementById('Cumulative').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+                // The data for our dataset
+        data: {
+          
+            labels:  dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July'],//data1[i].date,//
+            
+        datasets: [{
+                label: 'Confirmed Cases ',
+                fill: false,
+                borderWidth: 5, 
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: combTot   //[0, 10, 5, 2, 20, 30, 45]// document.getElementById("demo").innerHTML = car
+            },
+            {
+             label: 'Recovery Cases' ,
+                fill: false, 
+                backgroundColor: 'rgb(0, 191, 106)',
+                borderColor: 'rgb(0, 191, 106)',
+                data: recTot
+                },
+                {
+             label: 'Death Cases' ,
+                fill: false, 
+                backgroundColor: 'rgb(99, 99, 132)',
+                borderColor: 'rgb(99, 99, 132)',
+                data: deadTot
+                },
+                {
+             label: 'Hospital Cases ',
+                fill: false, 
+                backgroundColor: 'rgb(99, 99, 132)',
+                 borderColor: 'rgb(255, 99, 132)',
+                 data: hospTot      
+                }
+            ]
+        },
+    
+        // Configuration options go here
+        options: {}
+        
+    });	*/
+    }
+    getApi();
+    </script>
+    
+   <canvas id="Daily" width="100" height="50"></canvas>
+<!-- <canvas id="Cumulative" width="100" height="50"></canvas>  
+ -->
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <h1>Test Array</h1>
+</head>
+
+<body>
+    <script>
+        const lg = console.log;
+        var arr = [0, 2, 5, 89, 9];
+        var maxArr = 0;
+        lg(arr);
+        lg(arr[2]);
+
+
+
+
+        function tra() {
+            arr.push(97);
+            lg(arr);
+            return arr;
+        };
+
+        tra(); //run function
+
+        lg(arr);
+        maxArr = Math.max(...arr);
+        lg(maxArr);
+
+        lg(arr[4]);
+        var x = 4 * arr[2] / maxArr;
+        lg(x);
+    </script>
+
+
+</body>
+
+</html>

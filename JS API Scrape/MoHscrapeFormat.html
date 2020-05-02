@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<script>
+var fileJson = MoHscrape.json;
+ // This gets theregion with the largest umber on latest date. 
+ async function getMaxRegionNum() {
+        const response = await fetch(fileJson);
+        const history = await response.json();
+    console.log(history);
+    
+        //console.log(history[Object.keys(history)[19]].length); // this works to get lastDHB by item, can iterate through to get largest item
+    
+         //console.log(history[Object.keys(history)[1]][19].total); // this works to get last TOTAL in array of city
+    
+        var maxArray = [];
+    
+        /* for (var i = 0; i < history[Object.keys(history)[19]].length; i++) {
+    
+            maxArray.push(history[Object.keys(history)[i]][19].total);
+        } */
+        /* maxTot = Math.max(...maxArray);
+        console.log(maxArray);
+        console.log(maxTot); */
+    };
+
+
+
+</script>
+
+</body>

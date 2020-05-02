@@ -1,0 +1,40 @@
+html,
+body,
+svg {
+    height: 100%
+}
+
+svg:not(:root) {
+    display: inline-block;
+}
+
+#header {
+    width: 35%;
+    float: left;
+    height: 900px;
+}
+
+#container {
+    width: 100%;
+    margin: auto;
+}
+
+#map {
+    width: 35%;
+    float: left;
+    height: 900px;
+}
+
+#data {
+    width: 30%;
+    float: right;
+    height: 900px;
+}
+
+#clear {
+    clear: both;
+}
+
+text {
+    font: bold 13px Arial;
+}

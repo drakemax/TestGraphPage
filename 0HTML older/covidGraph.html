@@ -1,0 +1,266 @@
+<!-- 
+    I want to do some work on the URL call so that I can select bitys of it 
+    then call the graphs up based on the call. 
+ -->
+ <!DOCTYPE html>
+ <html>
+     <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+     </head>
+        <body>
+<h1>Covid Graphs from API</h1>
+<p id="demo">This site asks for code and then dates and then fetches data from API</p>
+
+   <p>Start Date </p>
+   <select id="startDate"  name= "start" onchange = "selectStart(this.id)">
+    <option value=""></option>
+     <option value="2020-03-11">2020-03-11</option>
+     <option value="2020-03-12">2020-03-12</option>
+     <option value="2020-03-13">2020-03-13</option>
+    </select>
+
+  
+
+    <p>End Date</p>
+    <select id="endDate"  name= "end" onchange = "selectEnd(this.id)">
+      <option value=""></option>
+      <option value="2020-04-10">2020-04-10</option>
+       <option value="2020-04-11">2020-04-11</option>
+       <option value="2020-04-12">2020-04-12</option>
+       <option value="2020-04-13">2020-04-13</option>
+      </select>
+
+    <p>Country</p>
+    <select id="mySelect"  name= "country" onchange = "selectCountry(this.id)">
+    <option value=""></option>
+      <option value="NZL">NZL</option>
+      <option value="USA">USA</option>
+      <option value="IRL">IRL</option>
+      <option value="IND">IND</option>
+    </select>
+
+    <script type="text/javascript">
+
+        var dates = [];
+        var conf = [];
+        var dead = []; 
+        var rec = []; 
+        var datesLessStart  = [];
+        var confLessEnd  = [];
+        var confLessStart = [];
+        var recLessEnd = [];
+        var recLessStart = [];
+        var deadLessEnd = [];
+        var IsoC="";
+        var sD= "";
+        var eD= "";
+      //  var deadLessStart = [];
+      function selectStart(d1) {
+        var sDV = document.getElementById(d1);
+      sD=sDV.value;
+      }
+      console.log(sD);
+      function selectEnd(d2) {
+        var eDV = document.getElementById(d2);
+      eD=eDV.value;
+      
+      }
+  
+      function selectCountry(s1) {
+    var IsoCV = document.getElementById(s1);
+      IsoC=IsoCV.value;
+    //console.log(IsoC);
+       dates.length=0;
+        conf.length=0;
+        dead.length=0;
+        rec.length=0;
+        datesLessStart.length=0;
+        confLessEnd.length=0;
+        confLessStart.length=0;
+        recLessEnd.length=0;
+        recLessStart.length=0;
+        deadLessEnd.length=0;
+   
+      console.log("1");
+      console.log(IsoC);
+      console.log(sD);
+      console.log(eD);
+      api_url =`https://covidapi.info/api/v1/country/${IsoC}/timeseries/${sD}/${eD}`   
+      
+    getApi();
+      
+  }  
+  console.log("2");
+  console.log(IsoC);
+  console.log(sD);
+      console.log(eD);
+ 
+   /*  <!--API info  https://github.com/backtrackbaba/covid-api --> */
+   var api_url = "";
+    console.log(api_url);
+
+   // const api_url =" https://covidapi.info/api/v1/country/NZL"
+    //const api_url ="https://api.wheretheiss.at/v1/satellites/25544"
+    //const api_url =" https://picsum.photos/list"    /api/v1/country/IND/timeseries/2020-03-10/2020-03-19
+    
+    async function getApi(){
+    const response = await fetch(api_url);
+    const data = await response.json();
+    //console.log(data.count);
+    //console.log(data);
+    
+    for (var i = 0; i < data.count; i++) {
+        var data1 = data.result;
+       // console.log(data1[i].date);
+        //console.log(data1[i].confirmed);
+        //console.log(data1[i].deaths);
+        //console.log(data1[i].recovered);
+        dates.push(data1[i].date); 
+        conf.push(data1[i].confirmed);
+        rec.push(data1[i].recovered);
+        dead.push(data1[i].deaths);
+     }
+    /*  <!-- Create Array for dates with first date not in Array- This is to match the number of datapoints created --> */
+     //console.log(dates);
+     datesLessStart =dates.slice(0);
+        // console.log(datesLessStart);
+        datesLessStart.shift();
+         console.log(datesLessStart)//30
+        
+    /* <!-- Create Array for confirmed daily addition/reductions get by subtracting today from yesterdays number --> */
+         //console.log(conf);
+        confLessEnd =conf.slice(0);
+          confLessEnd.pop();	
+          //console.log(confLessEnd); //30
+         
+        confLessStart = conf.slice(0);
+            confLessStart.shift();
+            //console.log(confLessStart);//30
+        
+        var dailyConfChange = confLessStart.map(function(item, index) {
+          // In this case item correspond to currentValue of array a, 
+          // using index to get value from array b
+          return item - confLessEnd[index];
+        })	
+        //console.log(dailyConfChange);//30
+        
+   /*  <!-- Create Array for recovered daily addition/reductions get by subtracting today from yesterdays number 	 */
+           recLessEnd =rec.slice(0);
+            recLessEnd.pop();
+            //console.log(recLessEnd);//30
+            
+            recLessStart =rec.slice(0);
+            recLessStart.shift();
+            //console.log(recLessStart);//30
+            
+        var dailyRecChange = recLessStart.map(function(item, index) {
+          // In this case item correspond to currentValue of array a, 
+          // using index to get value from array b
+          return item - recLessEnd[index];
+        })	
+        //console.log(dailyRecChange);//30
+     
+     /* !-- Create Array for deaths daily addition/reductions get by subtracting today from yesterdays number 	 */
+           deadLessEnd =dead.slice(0);
+            deadLessEnd.pop();
+            //console.log(deadLessEnd);//30
+            
+            deadLessStart =dead.slice(0);
+            deadLessStart.shift();
+            //console.log(deadLessStart);//30
+            
+        var dailyDeadChange = deadLessStart.map(function(item, index) {
+          // In this case item correspond to currentValue of array a, 
+          // using index to get value from array b
+          return item - deadLessEnd[index];
+        })	
+        //console.log(dailyRecChange);//30
+     
+     // console.log(Object.entries(data.date).map( (item) => item[0]));
+    //console.log(document.getElementById("demo").innerHTML = death);
+/*     <!-- chart --> */
+    var ctx = document.getElementById('Daily').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'bar',
+                // The data for our dataset
+        data: {
+          
+            labels:  datesLessStart,//['January', 'February', 'March', 'April', 'May', 'June', 'July'],//data1[i].date,//
+            
+        datasets: [{
+                label: 'Confirmed Cases Daily Change',
+                fill: false, 
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: dailyConfChange    //[0, 10, 5, 2, 20, 30, 45]// document.getElementById("demo").innerHTML = car
+            },
+            {
+             label: 'Recovery Cases Daily Change',
+                fill: false, 
+                backgroundColor: 'rgb(0, 191, 106)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: dailyRecChange
+                },
+                {
+             label: 'Death Cases Daily Change',
+                fill: false, 
+                backgroundColor: 'rgb(99, 99, 132)',
+                data: dailyDeadChange,
+                borderColor: 'rgb(255, 99, 132)'
+                
+                }
+            ]
+        },
+    
+        // Configuration options go here
+        options: {}
+        
+    });	
+    var ctx = document.getElementById('Cumulative').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+                // The data for our dataset
+        data: {
+          
+            labels:  dates,//['January', 'February', 'March', 'April', 'May', 'June', 'July'],//data1[i].date,//
+            
+        datasets: [{
+                label: 'Confirmed Cases ',
+                fill: false, 
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: conf   //[0, 10, 5, 2, 20, 30, 45]// document.getElementById("demo").innerHTML = car
+            },
+            {
+             label: 'Recovery Cases' ,
+                fill: false, 
+                backgroundColor: 'rgb(0, 191, 106)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: rec
+                },
+                {
+             label: 'Death Cases ',
+                fill: false, 
+                backgroundColor: 'rgb(99, 99, 132)',
+                 borderColor: 'rgb(255, 99, 132)',
+                 data: dead      
+                }
+            ]
+        },
+    
+        // Configuration options go here
+        options: {}
+        
+    });	
+    }
+    getApi();
+    </script>
+    
+    <canvas id="Daily" width="100" height="50"></canvas>
+    <canvas id="Cumulative" width="100" height="50"></canvas>
+
+</body>
+</html>
