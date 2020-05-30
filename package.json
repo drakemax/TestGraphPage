@@ -1,0 +1,30 @@
+{
+  "name": "testgraphpage",
+  "version": "1.0.0",
+  "description": "This is my work to date on the Covid Map data for NZ and some for Charts for World data. \r Excel file that scrapes MoH website & creates code for covidmap.html",
+  "main": "0Test.js",
+  "dependencies": {
+    "commitizen": "^4.1.2"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drakemax/TestGraphPage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drakemax/TestGraphPage/issues"
+  },
+  "homepage": "https://github.com/drakemax/TestGraphPage#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
