@@ -70,12 +70,12 @@
       data.addColumn('number', 'Total to Date');
       data.addColumn('number', 'New in last day');
       data.addRows([
-        ['Number of confirmed cases in New Zealand', { v: 1184 }, { v: 1 }],
+        ['Number of confirmed cases in New Zealand', { v: 1186 }, { v: 2 }],
         ['Number of probable cases', { v: 350 }, { v: 0 }],
-        ['Number of confirmed and probable cases', { v: 1534 }, { v: 1 }],
-        ['Number of recovered cases', { v: 1490 }, { v: 0 }],
+        ['Number of confirmed and probable cases', { v: 1536 }, { v: 2 }],
+        ['Number of recovered cases', { v: 1492 }, { v: 2 }],
         ['Number of deaths', { v: 22 }, { v: 0 }],
-        ['Number of active cases', { v: 22 }, { v: 1 }]
+        ['Number of active cases', { v: 22 }, { v: 0 }]
       ]);
 
       var table = new google.visualization.Table(document.getElementById('data_table'));
@@ -142,10 +142,6 @@
         ],
         'dataProvider': [
           {
-            '# of Cases': '% of cases',
-            'Transmission Type': 'Transmission type'
-          },
-          {
             '# of Cases': '0.39',
             'Transmission Type': 'Imported cases'
           },
@@ -160,6 +156,10 @@
           {
             '# of Cases': '0.06',
             'Transmission Type': 'Locally acquired cases, unknown source'
+          },
+          {
+            '# of Cases': '0',
+            'Transmission Type': 'Source under investigation'
           }
         ]
       }
@@ -171,12 +171,12 @@
 <body>
   <div id="container">
     <div id="header">
-      <h1 id="bold-red"> Covid -19 in NZ update for 06-07-20</h1>
-      <h2 id="bold-red"> Infected: 1534 , Active: 22 , Deaths: 22 , Recovered: 1490</h2>
+      <h1 id="bold-red"> Covid -19 in NZ update for 07-07-20</h1>
+      <h2 id="bold-red"> Infected: 1536 , Active: 22 , Deaths: 22 , Recovered: 1492</h2>
       <p><strong> Timeline</strong></br>
         28th Feb 2020 First confirmed Covid case in NZ
-        Current as per map after <strong>129</strong> days<br>
-        Current day of lockdown = <strong>103</strong>, -75 days to go of 4 week lockdown
+        Current as per map after <strong>130</strong> days<br>
+        Current day of lockdown = <strong>104</strong>, -76 days to go of 4 week lockdown
       </p>
       <h2>Charts </h2>
       <p> This information below is coming from a different source to the rest of the website which is scraping the
