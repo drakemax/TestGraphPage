@@ -70,12 +70,12 @@
       data.addColumn('number', 'Total to Date');
       data.addColumn('number', 'New in last day');
       data.addRows([
-        ['Number of confirmed cases in New Zealand', { v: 1205 }, { v: 1 }],
+        ['Number of confirmed cases in New Zealand', { v: 1205 }, { v: 0 }],
         ['Number of probable cases', { v: 350 }, { v: 0 }],
-        ['Number of confirmed and probable cases', { v: 1555 }, { v: 1 }],
+        ['Number of confirmed and probable cases', { v: 1555 }, { v: 0 }],
         ['Number of recovered cases', { v: 1506 }, { v: 0 }],
         ['Number of deaths', { v: 22 }, { v: 0 }],
-        ['Number of active cases', { v: 27 }, { v: 1 }]
+        ['Number of active cases', { v: 27 }, { v: 0 }]
       ]);
 
       var table = new google.visualization.Table(document.getElementById('data_table'));
@@ -171,12 +171,12 @@
 <body>
   <div id="container">
     <div id="header">
-      <h1 id="bold-red"> Covid -19 in NZ update for 21-07-20</h1>
+      <h1 id="bold-red"> Covid -19 in NZ update for 22-07-20</h1>
       <h2 id="bold-red"> Infected: 1555 , Active: 27 , Deaths: 22 , Recovered: 1506</h2>
       <p><strong> Timeline</strong></br>
         28th Feb 2020 First confirmed Covid case in NZ
-        Current as per map after <strong>144</strong> days<br>
-        Current day of lockdown = <strong>118</strong>, -90 days to go of 4 week lockdown
+        Current as per map after <strong>145</strong> days<br>
+        Current day of lockdown = <strong>119</strong>, -91 days to go of 4 week lockdown
       </p>
       <h2>Charts </h2>
       <p> This information below is coming from a different source to the rest of the website which is scraping the
