@@ -70,12 +70,12 @@
       data.addColumn('number', 'Total to Date');
       data.addColumn('number', 'New in last day');
       data.addRows([
-        ['Number of confirmed cases in New Zealand', { v: 1607 }, { v: 4 }],
+        ['Number of confirmed cases in New Zealand', { v: 1612 }, { v: 5 }],
         ['Number of probable cases', { v: 356 }, { v: 0 }],
-        ['Number of confirmed and probable cases', { v: 1963 }, { v: 4 }],
-        ['Number of recovered cases', { v: 1857 }, { v: 0 }],
+        ['Number of confirmed and probable cases', { v: 1968 }, { v: 5 }],
+        ['Number of recovered cases', { v: 1868 }, { v: 11 }],
         ['Number of deaths', { v: 25 }, { v: 0 }],
-        ['Number of active cases', { v: 81 }, { v: 4 }]
+        ['Number of active cases', { v: 75 }, { v: -6 }]
       ]);
 
       var table = new google.visualization.Table(document.getElementById('data_table'));
@@ -171,12 +171,12 @@
 <body>
   <div id="container">
     <div id="header">
-      <h1 id="bold-red"> Covid -19 in NZ update for 02-11-20</h1>
-      <h2 id="bold-red"> Infected: 1963 , Active: 81 , Deaths: 25 , Recovered: 1857</h2>
+      <h1 id="bold-red"> Covid -19 in NZ update for 03-11-20</h1>
+      <h2 id="bold-red"> Infected: 1968 , Active: 75 , Deaths: 25 , Recovered: 1868</h2>
       <p><strong> Timeline</strong></br>
         28th Feb 2020 First confirmed Covid case in NZ
-        Current as per map after <strong>248</strong> days<br>
-        Current day of lockdown = <strong>222</strong>, -194 days to go of 4 week lockdown
+        Current as per map after <strong>249</strong> days<br>
+        Current day of lockdown = <strong>223</strong>, -195 days to go of 4 week lockdown
       </p>
       <h2>Charts </h2>
       <p> This information below is coming from a different source to the rest of the website which is scraping the
@@ -239,7 +239,7 @@
                 fill="orange" style="mix-blend-mode: overlay" stroke="black" stroke-width=".5"></path>
             </g>
             <g opacity="0.246575342465753" style="mix-blend-mode: overlay">
-              <title>Bay of Plenty DHB @Pop = 238380 , Confirmed = 0, new today= 0 ,Active 77 ,Recovered 0 ,Deaths 0,
+              <title>Bay of Plenty DHB @Pop = 238380 , Confirmed = 0, new today= 0 ,Active 73 ,Recovered 0 ,Deaths 0,
               </title>
               <path id="Bay of Plenty"
                 d="M461,280.84c-.7,1.26.57,2.75-1.47,3.3s-1.65,2.13-3.43,2-1.54,1-2.66,2.8-1.07,2.42-.18,4.22a18.27,18.27,0,0,1,1.61,5.46c.33,2,.64,3,1.23,5.3s1.72,2.91,1.07,5.31-1.25,2.49-1.07,4.65-.51,2.81.1,4.4-.07,1.58,2,3.21,3.68,1.56,4.14,3.35a3.24,3.24,0,0,0,2.24,2.56,4.63,4.63,0,0,0,2.19.36l2.35-1.53a34.79,34.79,0,0,1,3.3-2.63,10.83,10.83,0,0,0,2.56-2.72s2.52-.87,3.66.19,2,3.8,3.37,3.83.51-1.25,2-2.42,3.37-1.45,4.25-.9,4.48,2.8,4.48,2.8,2.38.7,3.08,1.82,2.2,1.91,1.38,3.13.17,2.08-1.37,3.33a3.83,3.83,0,0,0-1.32,3.21s-1.77.28-1.77,1.54,0,.7.7,2.38,1,1.12.84,3.5a11.62,11.62,0,0,1-.56,3.93c-.42,1.26,1.15,2.51.12,3.67s-1.53.12-1.73,1.94-1.2,2.5-1,4.39-.75,3.62-.1,5.08-.79,2.85.85,3.69.67,2.09,3,2.38,4.11-.2,4.23,1.7.68,2.09,0,3.77-2.1,1-2.46,3.41-1.14,2.47-.28,4.31,2.26,2.58,3.06,2.37,1.45-1.33,2.49-3,1.58-3.13,2.69-4.87.26-4.07,2.34-3.31,2.53,1.53,4.28,1,2.18-.1,3.85-.28,1.84-.27,2.55-1.8.76-1.81,1.54-3.29,1.51-1.92,2.49-1.92,2.34-.2,2.27-.8.95-1.86.95-1.86l1.69-2.8s1.81-1.23,1.95-2.78,2.11-2.69,2.11-2.69l3.22-2.66,3.65-1.68s2.37-.3,2.86-2a22.1,22.1,0,0,1,1.48-3.49,5.1,5.1,0,0,0,2.64-2.37,19.56,19.56,0,0,1,1.88-3.54c.86-1.17,1.9-2.05,2.61-3.17s2.62-.9,1.6-3.13-.32-1.38-.74-4-.56-3.4.68-3.35a5.05,5.05,0,0,1,2.62,1.45s1.34,1.72,2.5,3.3a12.56,12.56,0,0,0,3.86,2.87s1.69.13,1.68-2.33-1.71-2.57.64-4.28.65-.11,3.23-2.25,2.58-1,3.42-2.84,1.74-1.45,2.06-3.3-.59-1.37.84-3.6a8.64,8.64,0,0,1,2.57-3.06c1.26-1.11,1-3.07-2.05-2.51s-5.48,1.84-4.81-.42.43-1.62-.06-3.48a33.12,33.12,0,0,1-.94-3.87c-.18-1.26.3-1.64-1.25-2.74s-3.87-2.33-3.87-2.33a7.49,7.49,0,0,1-1.48,2.1c-.6.63-1.08.3-1.7.2s-.38.79-.38.79.06.91-.3,1.18-1.23,0-2.12.78.69,1,.39,2.19,0,.71-.55,1.53-.61.62-1.47,1.59a7.5,7.5,0,0,1-2.22,1.93,8.8,8.8,0,0,1-2.28,1,15.07,15.07,0,0,0-2.16,1.1c-.92.57-1,.89-1.56,1s-.55-.22-1.55,0-.29.67-2.31.31-1.73,0-2.88-.11-.66.94-.66.94.63.6.37,1-.82-.06-1.33-.59-.33-.76-1-1.05-2.1.27-3.14.25-.43-.13-1,0a1.13,1.13,0,0,0-.8.66s.78.37.57.92-.53.5-1,1,.35.24.29,1.07-.41.59-.76.34-.64-1.32-.64-1.32a1.39,1.39,0,0,1-1.2.21c-.74-.17-.76-1.4-.76-1.4a6.2,6.2,0,0,0-1.32.64c-.64.43-.36.27-1-.14s.17-.23.62-.62.24-.35-.23-.67-.07-.4.53-.51,1.62-.08,2.73-.17.53-.51.53-.51a4.38,4.38,0,0,0-1.76-.71c-.84-.06-2,.15-2.85-.42s-2.4-.81-3.93-1.36A29.32,29.32,0,0,0,515.3,308c-1.9-.28-4.27-2.11-6.68-2.4s-2.61-.26-4-1.05-5.58-3.72-7.7-4.68-2.43-1-3.31-2.49-1.24-1.22-1.73-.52-2.74.18-2.74.18a20.42,20.42,0,0,0-2.9-1.33,48.46,48.46,0,0,1-5.55-3c-2.39-1.32-2-1.9-3-3.87s-1.44-1.18-1.44-1.18a13.26,13.26,0,0,0,1.11,3.39c.76,1.41,1.63,2.89,1.57,3.72s-.42-.13-2.39-.8-.56-1.44-.56-1.44a3.39,3.39,0,0,0-1.5-.35c-1.14-.11-.33.46-.73,1.05s-.55-.21-.54-.73-.86-.77-1.39-1.49-1.12.09-1.36.44-.14,1-.82,1.17-.21-1.19-.21-1.19a2.06,2.06,0,0,0-.73-1.21c-.58-.4-.47-.32-.41-1.15s-.7-.49-.91.05-.13,1-1,1.41-.66-.29-1.29-.9-.83-.06-1.41-.47.44-.38,1.06-1.52.13-.43-.28-1.59-.62-.61-.95-.14-1.19.21-1.05-.74.34-1-.09-1.1-.69.73-1.21.72,0-.51.42-1.1.53-.5.82-1.17-.81-1.09-.81-1.09.18-.75.81-.65a2.38,2.38,0,0,0,1.11-.1,4,4,0,0,1,1.75-.51c1.12-.09,2.13,1,3.23,2.61s1.52,1.57.83,1.8-1.39.24-1.45,1.07.63.61,1.21,1a5.54,5.54,0,0,0,1.65.63,1.79,1.79,0,0,1,.5-1.22c.53-.5.62.61.76,1.41a3.39,3.39,0,0,0,1.7,2.05c.67.3-.45-1.35-.45-1.35s.18-.75,1-.18.87,1.49,1.35,1.3-1.56-2.49-1.56-2.49l-1.58-2a26.5,26.5,0,0,1-2.54-3.34,18,18,0,0,0-3.33-3.72l-1.07.3s-.36.26-1.62-.44a2.4,2.4,0,0,0-.85-.31l-.69.28A22.34,22.34,0,0,1,461,280.84Z"
@@ -256,7 +256,7 @@
               <path d="M520,305l-.51-.59a2.28,2.28,0,0,1,1-.72c.64-.25.68,0,1.26.19s.3.9.3.9A2.1,2.1,0,0,1,520,305Z"
                 fill="green" style="mix-blend-mode: overlay" stroke="black" stroke-width=".5"></path> green
             </g>
-            <g opacity="0.246575342465753" style="mix-blend-mode: overlay">
+            <g opacity="0.26027397260274" style="mix-blend-mode: overlay">
               <title>Canterbury DHB @Pop = 567870 , Confirmed = 0, new today= 0 ,Active 0 ,Recovered 0 ,Deaths 0,
               </title>
               <path id="Canterbury"
@@ -272,7 +272,7 @@
                 fill="green" style="mix-blend-mode: overlay" stroke="black" stroke-width=".5"></path>
               greengreengreengreengreen
             </g>
-            <g opacity="0.26027397260274" style="mix-blend-mode: overlay">
+            <g opacity="0.246575342465753" style="mix-blend-mode: overlay">
               <title>Counties Manukau DHB @Pop = 563210 , Confirmed = Total, new today= 0 ,Active Active ,Recovered
                 Recovered ,Deaths Deceased, </title>
               <path id="Counties Manukau"
@@ -297,7 +297,7 @@
               greengreengreengreengreen
             </g>
             <g opacity="0.246575342465753" style="mix-blend-mode: overlay">
-              <title>Lakes DHB @Pop = 110410 , Confirmed = 165, new today= 0 ,Active 0 ,Recovered 153 ,Deaths 12,
+              <title>Lakes DHB @Pop = 110410 , Confirmed = 166, new today= 0 ,Active 1 ,Recovered 153 ,Deaths 12,
               </title>
               <path id="Lakes"
                 d="M443.38,418.42c-.48,1.68-.22,3.84,1.14,3.6s2.54.27,4.06-.82,2.64,1.14,3.91-1.52,2.38-1.54,3.22-3.08,1.81-.92,3.57-2.45a20.57,20.57,0,0,1,4.4-3.36c1.94-1,3-1.81,4.42-1.92s2.66,2.39,3.58.16,1.66-2.54,3.14-2.72a17.65,17.65,0,0,1,4-.19c1.33.13,3.23.39,4.36-.17s1.25.74,1.82-.84a9.92,9.92,0,0,0,.42-3.64c.07-1.09-.66-.81.34-2.08s.8-.46,2.6-1.14,2.08-.1,4.61-.82,4.17-.48,4-2.36-.74-2.57-.18-3.69a28,28,0,0,1,1.54-2.8,15.15,15.15,0,0,0,1.16-4.62c-.8.21-2.21-.53-3.06-2.37s-.08-1.88.28-4.31,1.76-1.73,2.46-3.41.14-1.87,0-3.77-1.88-1.4-4.23-1.7-1.37-1.53-3-2.38-.21-2.24-.85-3.69.27-3.19.1-5.08.82-2.57,1-4.39.7-.77,1.73-1.94-.54-2.41-.12-3.67a11.62,11.62,0,0,0,.56-3.93c.14-2.38-.14-1.82-.84-3.5s-.7-1.12-.7-2.38,1.77-1.54,1.77-1.54a3.83,3.83,0,0,1,1.32-3.21c1.54-1.25.56-2.11,1.37-3.33s-.68-2-1.38-3.13-3.08-1.82-3.08-1.82-3.61-2.24-4.48-2.8-2.74-.27-4.25.9-.66,2.46-2,2.42-2.23-2.77-3.37-3.83-3.66-.19-3.66-.19a10.83,10.83,0,0,1-2.56,2.72,34.79,34.79,0,0,0-3.3,2.63l-2.35,1.53a4.63,4.63,0,0,1-2.19-.36,27.9,27.9,0,0,0-1.23,4.91c-.2,1.92.56,2.58,3.4,3.46s1.23,1.92,3.6,2.73,1.12,2.24,1.08,4.44-.65,2.62-1.2,4.38a14.39,14.39,0,0,1-2.5,4.51c-1.35,1.93-2.81,2.18-4.57,3a13,13,0,0,0-3.28,1.72c-1.42,1-2,.66-4,.91s-2.26-2.08-3.93-3.39a30.29,30.29,0,0,0-4.55-2.85c-2.25-1.3-1,2.07-1,3.74s-1.12,2.67-1.12,4.35-1.15,2.42-1.76,4.93A21.62,21.62,0,0,0,443,369a14.36,14.36,0,0,1-1.37,4.52,27.9,27.9,0,0,0-1.89,4.52c-.7,2.29-.19,2.87-.38,4.38s0,4.11-1.3,5.51,1.6,2.35,2.82,3.78,1.68,1,3.92,1.68,1.37,1.63,1.42,2.81a22.54,22.54,0,0,1-.39,4,51,51,0,0,0-.57,5.68,8.67,8.67,0,0,1-1,4.08,40.33,40.33,0,0,1-2.08,3.92c-.35.68-.59,1.16-.8,1.54l.47.43S443.86,416.74,443.38,418.42Z"
@@ -316,7 +316,7 @@
               greengreengreengreen
             </g>
             <g opacity="0.246575342465753" style="mix-blend-mode: overlay">
-              <title>Nelson Marlborough DHB @Pop = 150770 , Confirmed = 215, new today= 0 ,Active 1 ,Recovered 213
+              <title>Nelson Marlborough DHB @Pop = 150770 , Confirmed = 215, new today= 0 ,Active 0 ,Recovered 214
                 ,Deaths 1, </title>
               <path id="Nelson Marlborough"
                 d="M361.93,514.77a2.86,2.86,0,0,0,.12,1.33c.24.55-.35.41-.95.08s-.48-1.1-.34-1.69S361.5,514.23,361.93,514.77Z"
@@ -444,7 +444,7 @@
                 fill="green" style="mix-blend-mode: overlay" stroke="black" stroke-width=".5"></path>
               greengreengreengreengreen
             </g>
-            <g opacity="0.287671232876712" style="mix-blend-mode: overlay">
+            <g opacity="0.26027397260274" style="mix-blend-mode: overlay">
               <title>Waitemata DHB @Pop = 628970 , Confirmed = 216, new today= 0 ,Active 0 ,Recovered 214 ,Deaths 2,
               </title>
               <path id="Waitematā"
@@ -618,7 +618,7 @@
               <circle r="12.5" cy="-7" fill="orange"></circle> <text text-anchor="middle">0</text>
             </g>
             <g id="Bay of Plenty" transform="translate(610 260)">
-              <title>Bay of Plenty DHB @Pop = 238380 , Confirmed = 0, new today= 0 ,Active 77 ,Recovered 0 ,Deaths 0,
+              <title>Bay of Plenty DHB @Pop = 238380 , Confirmed = 0, new today= 0 ,Active 73 ,Recovered 0 ,Deaths 0,
               </title>
               <circle r="12.5" cy="-7" fill="orange"></circle> <text text-anchor="middle">0</text>
             </g>
@@ -648,7 +648,7 @@
               <circle r="12.5" cy="-7" fill="orange"></circle> <text text-anchor="middle">0</text>
             </g>
             <g id="Lakes" transform="translate(468.43 370)">
-              <title>Lakes DHB @Pop = 110410 , Confirmed = 165, new today= 0 ,Active 0 ,Recovered 153 ,Deaths 12,
+              <title>Lakes DHB @Pop = 110410 , Confirmed = 166, new today= 0 ,Active 1 ,Recovered 153 ,Deaths 12,
               </title>
               <circle r="12.5" cy="-7" fill="orange"></circle> <text text-anchor="middle">0</text>
             </g>
@@ -658,7 +658,7 @@
               <circle r="12.5" cy="-7" fill="orange"></circle> <text text-anchor="middle">0</text>
             </g>
             <g id="Nelson Marlborough" transform="translate(160 570)">
-              <title>Nelson Marlborough DHB @Pop = 150770 , Confirmed = 215, new today= 0 ,Active 1 ,Recovered 213
+              <title>Nelson Marlborough DHB @Pop = 150770 , Confirmed = 215, new today= 0 ,Active 0 ,Recovered 214
                 ,Deaths 1, </title>
               <circle r="12.5" cy="-7" fill="orange"></circle> <text text-anchor="middle">0</text>
             </g>
